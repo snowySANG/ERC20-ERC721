@@ -76,23 +76,4 @@ contract ERC20Token {
         return allowance[_owner][_spender];
     }
 
-    // 查询账户余额
-    function balanceOf_owner(address _owner) public view returns (uint256 balance) {
-        return balanceOf[_owner];
-    }
-
-    // 查询代币的名称
-    function name_of() public view returns (string memory) {
-        return name;
-    }
-
-    // 查询代币符号
-    function symbol_of() public view returns (string memory) {
-        return symbol;
-    }
-
-    // 查询代币小数位数
-    function decimals_of() public view returns (uint8) {
-        return decimals;
-    }
 }
