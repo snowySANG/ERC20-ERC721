@@ -76,4 +76,25 @@ contract ERC20Token {
         return allowance[_owner][_spender];
     }
 
+     // 增加授权额度
+    function add_allowance(address _spender, uint256 _value) public returns (bool success) {
+        require(_spender != address(0), "ERC20: add allowance to the zero address");
+
+        allowance[msg.sender][_spender] += _value; // 增加授权额度
+        emit Approval(msg.sender, _spender, allowance[msg.sender][_spender]); // 触发 Approval 事件
+
+        return true;
+    }
+
+    // 减少授权额度
+    function subtract_allowance(address _spender, uint256 _value) public returns (bool success) {
+        require(_spender != address(0), "ERC20: subtract allowance to the zero address");
+        require(allowance[msg.sender][_spender] >= _value, "ERC20: insufficient allowance");
+
+        allowance[msg.sender][_spender] -= _value; // 减少授权额度
+        emit Approval(msg.sender, _spender, allowance[msg.sender][_spender]); // 触发 Approval 事件
+
+        return true;
+    }
+
 }
