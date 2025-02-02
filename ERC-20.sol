@@ -71,11 +71,6 @@ contract ERC20Token {
         return true;
     }
 
-    // 查询剩余授权额度
-    function allowance_remain(address _owner, address _spender) public view returns (uint256 remaining) {
-        return allowance[_owner][_spender];
-    }
-
      // 增加授权额度
     function add_allowance(address _spender, uint256 _value) public returns (bool success) {
         require(_spender != address(0), "ERC20: add allowance to the zero address");
