@@ -35,6 +35,7 @@ contract ERC20Token {
     }
 
     // 转账函数
+    // address _from默认为调用该函数的地址，函数执行_from向_to转_value*(10^_decimals)的币值
     function transfer(address _to, uint256 _value) public returns (bool success) {
         require(_to != address(0), "ERC20: transfer to the zero address");
         require(balanceOf[msg.sender] >= _value, "ERC20: insufficient balance");
@@ -47,6 +48,7 @@ contract ERC20Token {
     }
 
     // 授权转账函数
+    // address _owner默认为调用该函数的地址，函数执行_owner授权_spender可以管理_owner的_value*(10^_decimals)的币值
     function approve(address _spender, uint256 _value) public returns (bool success) {
         require(_spender != address(0), "ERC20: approve to the zero address");
 
@@ -57,6 +59,7 @@ contract ERC20Token {
     }
 
     // 从授权的地址转账函数
+    // 函数执行_from向_to转_value*(10^_decimals)的币值（结合上面的approve，_from不必须是调用者自身，可以是授权过的_owner）
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
         require(_from != address(0), "ERC20: transfer from the zero address");
         require(_to != address(0), "ERC20: transfer to the zero address");
